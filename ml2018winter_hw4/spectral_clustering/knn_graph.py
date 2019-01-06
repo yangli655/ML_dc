@@ -28,5 +28,5 @@ def knn_graph(X, k, threshold):
         idx_array = np.argsort(item)
         W[idx, idx_array[1:k+1]] = 1
     
-    return W
+    return (W + W.T) / 2
     # end answer
