@@ -16,4 +16,14 @@ def PCA(data):
     # YOUR CODE HERE
     # Hint: you may need to normalize the data before applying PCA
     # begin answer
+    data_avg = np.average(data, axis=1)
+    data_std = np.std(data, axis=1)
+    d = (data - data_avg) / data_std
+
+    eigval, eigvec = np.linalg.eig(d)
+    sorted_eig_idx = np.argsort(-eigval)
+
+    eigvalue = eigval[sorted_eig_idx]
+    eigvector = eigvec[:, sorted_eig_idx]
+    return eigvalue, eigvector
     # end answer

@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from pca import PCA
 
 def hack_pca(filename):
     '''
@@ -10,4 +11,6 @@ def hack_pca(filename):
 
     # YOUR CODE HERE
     # begin answer
+    #eigval, eigvec = PCA()
+    return img_r
     # end answer
