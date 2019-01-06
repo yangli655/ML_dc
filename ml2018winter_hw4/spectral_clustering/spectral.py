@@ -22,6 +22,7 @@ def spectral(W, k):
     k_eigvec_idx = eigvec_idx[0:k]
     k_eigvec = eigvec[:, k_eigvec_idx]
     
+    k_eigvec = np.array(k_eigvec)
     idx = kmeans(k_eigvec, k)
     return idx
     # end answer
