@@ -18,15 +18,15 @@ def knn_graph(X, k, threshold):
     N = X.shape[0]
     dis = np.zeros((N, N))
     W = np.zeros((N, N))
+
     for i in range(N):
-        for j in range(i+1, N):
-            dis[i, j] = dis[j, i] = np.sqrt(np.sum((X[i] - X[j])**2))
+        temp = (X - X[i]) ** 2
+        dis[i] = np.sqrt(np.sum(temp, axis=1))
     dis = np.where(dis > threshold, np.inf, dis)
 
     for idx, item in enumerate(dis):
         idx_array = np.argsort(item)
         W[idx, idx_array[1:k+1]] = 1
     
-    W = (W + W.T) / 2
     return W
     # end answer
