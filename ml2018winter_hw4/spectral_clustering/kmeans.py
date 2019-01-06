@@ -10,14 +10,13 @@ def kmeans(x, k):
 
         OUTPUT: idx  - cluster label
     '''
-
     x = x.astype(float)
     n = x.shape[0]
     ctrs = x[np.random.permutation(x.shape[0])[:k]]
     iter_ctrs = [ctrs]
     idx = np.ones(n)
-    x_square = np.expand_dims(np.sum(np.multiply(x, x), axis=1), 1)
 
+    x_square = np.expand_dims(np.sum(np.multiply(x, x), axis=1), 1)
     while True:
         distance = -2 * np.matmul(x, ctrs.T)
         distance += x_square

@@ -20,8 +20,8 @@ def spectral(W, k):
     eigval, eigvec = np.linalg.eig(L)
     eigvec_idx = np.argsort(eigval)
     k_eigvec_idx = eigvec_idx[0:k]
-    eigvec_idx = eigvec[:, k_eigvec_idx]
+    k_eigvec = eigvec[:, k_eigvec_idx]
     
-    idx = kmeans(eigvec_idx, k)
+    idx = kmeans(k_eigvec, k)
     return idx
     # end answer
