@@ -24,6 +24,6 @@ def PCA(data):
     sorted_eig_idx = np.argsort(-eigval)
     eigvalue = eigval[sorted_eig_idx]
     eigvector = eigvec[:, sorted_eig_idx]
-
+    
     return eigvalue, eigvector
     # end answer

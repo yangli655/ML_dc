@@ -13,11 +13,18 @@ def hack_pca(filename):
     # begin answer
     img_r = Image.open(filename).convert('L')
     img_r = np.array(img_r, dtype=np.float64)
-    print(img_r.shape[0] * img_r.shape[1])
-    print(np.sum(img_r ==0))
-    p = img_r.shape[1]
-    eigval, eigvec = PCA(img_r)
-    base = np.matmul(img_r, eigvec).astype(np.int64)
+
+    coord = np.where(((img_r > 0) & (img_r < 150)))
+    coord = np.array(coord).T
     
-    return img_r[base]
+    eigval, eigvec = PCA(coord)
+
+    new_cood = np.matmul(eigvec.T, coord.T) + 50
+    new_cood = np.array(new_cood, dtype=np.int64)
+
+    x = tuple(new_cood)
+    
+    img = np.zeros((img_r.shape[0]*3, img_r.shape[1]))
+    img[x] = 50
+    return img
     # end answer
