@@ -18,8 +18,21 @@ def knn(x, x_train, y_train, k):
     # Hint: You may find numpy.argsort & scipy.stats.mode helpful
 
     # YOUR CODE HERE
-
     # begin answer
+    N_test = x.shape[0]
+    y = np.zeros(N_test)
+
+    for i in range(N_test):
+        diff = x_train - x[i,:]
+        square_dist = np.sum(diff * diff, axis=1)
+        sorted_index = np.argsort(square_dist)
+        nodes_label = []
+
+        for j in range(k):
+            index = sorted_index[j]
+            nodes_label.append(y_train[index])
+
+        y[i] = scipy.stats.mode(nodes_label).mode[0]
     # end answer
 
     return y
